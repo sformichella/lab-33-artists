@@ -5,6 +5,7 @@ import {
   Route
 } from 'react-router-dom';
 import ArtistsContainer from '../containers/ArtistsContainer/ArtistsContainer';
+import ReleasesContainer from '../containers/ReleasesContainer/ReleasesContainer';
 
 export default function App() {
   return (
@@ -12,13 +13,13 @@ export default function App() {
       <Switch>
         <Route
           exact
-          path = "/artist/:id"
+          path = "/"
           render = {routerProps => <ArtistsContainer {...routerProps}/>}
         />
         <Route
           exact
-          path = "/:search?/:page?"
-          render = {routerProps => <ArtistsContainer {...routerProps}/>}
+          path = "/artist/:id"
+          render = {routerProps => <ReleasesContainer {...routerProps}/>}
         />
       </Switch>
     </Router>

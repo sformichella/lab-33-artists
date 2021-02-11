@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 export const useSearch = getResults => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('miley');
+  const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -35,14 +35,16 @@ export const useSearch = getResults => {
   };
 
   useEffect(() => {
-    setLoading(true);
+    if(searchTerm) {
+      setLoading(true);
 
-    getResults(searchTerm, page)
-      .then(res => {
-        setResults(res.results);
-        setTotalPages(res.totalPages);
-        setLoading(false);
-      });
+      getResults(searchTerm, page)
+        .then(res => {
+          setResults(res.results);
+          setTotalPages(res.totalPages);
+          setLoading(false);
+        });
+    }
   }, [page]);
 
   return {

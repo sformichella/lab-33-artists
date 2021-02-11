@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 
-export const useArtists = getArtists => {
-  const [artists, setArtists] = useState([]);
+export const useSearch = getResults => {
+  const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('miley');
   const [page, setPage] = useState(1);
@@ -18,9 +18,9 @@ export const useArtists = getArtists => {
     setLoading(true);
     setPage(1);
 
-    getArtists(searchTerm, 1)
+    getResults(searchTerm, 1)
       .then(res => {
-        setArtists(res.results);
+        setResults(res.results);
         setTotalPages(res.totalPages);
         setLoading(false);
       });
@@ -37,9 +37,9 @@ export const useArtists = getArtists => {
   useEffect(() => {
     setLoading(true);
 
-    getArtists(searchTerm, page)
+    getResults(searchTerm, page)
       .then(res => {
-        setArtists(res.results);
+        setResults(res.results);
         setTotalPages(res.totalPages);
         setLoading(false);
       });
@@ -49,7 +49,7 @@ export const useArtists = getArtists => {
     searchTerm,
     handleSearch,
     handleSubmit, 
-    artists,
+    results,
     loading,
     totalPages,
     page,

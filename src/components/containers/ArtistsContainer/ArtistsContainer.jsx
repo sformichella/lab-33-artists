@@ -2,7 +2,7 @@ import React from 'react';
 import ArtistList from '../../ArtistList/ArtistList';
 import ArtistsSearchForm from '../../ArtistsSearchForm/ArtistsSearchForm';
 import Loading from '../../Loading/Loading';
-import { useArtists } from '../../../state/artists';
+import { useSearch } from '../../../state/search';
 import Pagination from '../../Pagination/Pagination';
 import { getArtists } from '../services/musicBrainz';
 
@@ -11,13 +11,13 @@ export default function ArtistsContainer() {
     searchTerm,
     handleSearch,
     handleSubmit, 
-    artists,
+    results: artists,
     loading,
     totalPages,
     page,
     pageDown,
     pageUp
-  } = useArtists(getArtists);
+  } = useSearch(getArtists);
 
   return (
     <>

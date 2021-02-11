@@ -4,10 +4,10 @@ export const getArtists = (search, page) => {
   return fetch(API_URL + `&query=${search}` + `&offset=${(page - 1) * 25}`)
     .then(res => res.json())
     .then(json => {
-      let { artists } = json;
+      const { artists } = json;
       const { count } = json;
 
-      artists = artists.map(artist => {
+      const results = artists.map(artist => {
         const { id, name } = artist;
 
         return { id, name };
@@ -15,6 +15,6 @@ export const getArtists = (search, page) => {
     
       const totalPages = Math.ceil(count / 25);
 
-      return { artists, totalPages };
+      return { results, totalPages };
     });
 };

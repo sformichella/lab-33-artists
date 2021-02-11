@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { getArtists } from '../services/musicBrainz';
+import { useState, useEffect } from 'react';
 
-export const useArtists = () => {
+
+export const useArtists = getArtists => {
   const [artists, setArtists] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('miley');
@@ -20,7 +20,7 @@ export const useArtists = () => {
 
     getArtists(searchTerm, 1)
       .then(res => {
-        setArtists(res.artists);
+        setArtists(res.results);
         setTotalPages(res.totalPages);
         setLoading(false);
       });
@@ -39,7 +39,7 @@ export const useArtists = () => {
 
     getArtists(searchTerm, page)
       .then(res => {
-        setArtists(res.artists);
+        setArtists(res.results);
         setTotalPages(res.totalPages);
         setLoading(false);
       });

@@ -4,6 +4,7 @@ import ArtistsSearchForm from '../../ArtistsSearchForm/ArtistsSearchForm';
 import Loading from '../../Loading/Loading';
 import { useArtists } from '../../../state/artists';
 import Pagination from '../../Pagination/Pagination';
+import { getArtists } from '../services/musicBrainz';
 
 export default function ArtistsContainer() {
   const {
@@ -16,7 +17,7 @@ export default function ArtistsContainer() {
     page,
     pageDown,
     pageUp
-  } = useArtists();
+  } = useArtists(getArtists);
 
   return (
     <>

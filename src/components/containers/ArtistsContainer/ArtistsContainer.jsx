@@ -21,8 +21,9 @@ export default function ArtistsContainer() {
     e.preventDefault();
 
     setLoading(true);
+    setPage(1);
 
-    getArtists(searchTerm, page)
+    getArtists(searchTerm, 1)
       .then(res => {
         setArtists(res.artists);
         setTotalPages(res.totalPages);

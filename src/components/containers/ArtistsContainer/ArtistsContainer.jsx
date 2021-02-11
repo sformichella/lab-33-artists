@@ -8,29 +8,26 @@ import { getArtists } from '../../../services/musicBrainz';
 export default function ArtistsContainer() {
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('miley');
+  const [pageNum, setPageNum] = useState(1);
+
   const [artists, setArtists] = useState([]);
-
-  const { search, page } = useParams();
-
-  console.log(search, page);
 
   const handleSearch = ({ target }) => {
     setSearchTerm(target.value);
   };
 
   const handleSubmit = e => {
-    const history = useHistory();
-    history.push(`/${search}/${page}`);
     e.preventDefault();
 
     setLoading(true);
 
-    getArtists(searchTerm)
+    getArtists(searchTerm, pageNum)
       .then(artists => {
         setArtists(artists);
         setLoading(false);
       });
   };
+
 
   // const pageUp = () => {
   //   setPage(page + 1);

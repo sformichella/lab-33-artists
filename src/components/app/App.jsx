@@ -11,8 +11,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route
-          path = "/"
-          exact
+          path = "/(:search)(/:page)"
           render = {routerProps => <ArtistsContainer {...routerProps}/>}
         />
       </Switch>

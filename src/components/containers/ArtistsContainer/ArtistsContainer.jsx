@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import ArtistList from '../../ArtistList/ArtistList';
 import ArtistsSearchForm from '../../ArtistsSearchForm/ArtistsSearchForm';
 import Loading from '../../Loading/Loading';
@@ -9,11 +10,17 @@ export default function ArtistsContainer() {
   const [searchTerm, setSearchTerm] = useState('miley');
   const [artists, setArtists] = useState([]);
 
+  const { search, page } = useParams();
+
+  console.log(search, page);
+
   const handleSearch = ({ target }) => {
     setSearchTerm(target.value);
   };
 
   const handleSubmit = e => {
+    const history = useHistory();
+    history.push(`/${search}/${page}`);
     e.preventDefault();
 
     setLoading(true);
@@ -24,6 +31,16 @@ export default function ArtistsContainer() {
         setLoading(false);
       });
   };
+
+  // const pageUp = () => {
+  //   setPage(page + 1);
+  // };
+
+  // const pageDown = () => {
+  //   setPage(page - 1);
+  // };
+
+  
 
   return (
     <>

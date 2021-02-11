@@ -1,5 +1,5 @@
 const ARTISTS_URL = 'http://musicbrainz.org/ws/2/artist?fmt=json&limit=25';
-const RELEASES_URL = 'http://musicbrainz.org/ws/2/release?fmt=json&limit=25'
+const RELEASES_URL = 'http://musicbrainz.org/ws/2/release?fmt=json&limit=1000';
 
 export const getArtists = (search, page) => {
   return fetch(ARTISTS_URL + `&query=${search}&offset=${(page - 1) * 25}`)
@@ -25,6 +25,8 @@ export const getReleases = (search, page) => {
     .then(json => {
       const { releases } = json;
       const count = releases.length;
+
+      console.log(count);
 
       const results = releases.map(release => {
         const { id, title } = release;

@@ -1,6 +1,7 @@
 import React from 'react';
-import image from '../../assets/record.gif';
+
+const record = 'https://i.giphy.com/media/LwBTamVefKJxmYwDba/giphy.gif';
 
 export default function Loading() {
-  return <img src={image} alt="spinning record"/>;
+  return <img src={record} alt="loading"/>;
 }

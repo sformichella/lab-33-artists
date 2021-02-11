@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ArtistList from '../../ArtistList/ArtistList';
 import ArtistsSearchForm from '../../ArtistsSearchForm/ArtistsSearchForm';
+import Loading from '../../Loading/Loading';
 import { getArtists } from '../../../services/musicBrainz';
 
 export default function ArtistsContainer() {
@@ -32,7 +33,8 @@ export default function ArtistsContainer() {
         handleSubmit={handleSubmit}
       />
       {
-        loading ? <h1>Loading!</h1>
+        loading
+          ? <Loading />
           : <ArtistList
             artists={artists}
           />

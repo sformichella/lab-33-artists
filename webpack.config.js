@@ -84,6 +84,13 @@ module.exports = {
           options: { limit: 1000 },
         },
       },
+      {
+        test: /\.(ttf|eot|svg|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        include: SRC,
+        use: [{
+          loader: 'file-loader'
+        }]
+      }
     ],
   },
 };

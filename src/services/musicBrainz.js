@@ -1,11 +1,20 @@
-const API_URL = 'http://musicbrainz.org/ws/2/artist?fmt=json&limit=500';
+const API_URL = 'http://musicbrainz.org/ws/2/artist?fmt=json&limit=25';
 
-export const getArtists = (search, offset = 0) => {
-  return fetch(API_URL + `&query=${search}` + `&offset=${offset}`)
+export const getArtists = (search, page) => {
+  return fetch(API_URL + `&query=${search}` + `&offset=${(page - 1) * 25}`)
     .then(res => res.json())
-    .then(({ artists }) => artists.map(artist => {
-      const { id, name } = artist;
+    .then(json => {
+      let { artists } = json;
+      const { count } = json;
 
-      return { id, name };
-    }));
+      artists = artists.map(artist => {
+        const { id, name } = artist;
+
+        return { id, name };
+      });
+    
+      const totalPages = Math.ceil(count / 25);
+
+      return { artists, totalPages };
+    });
 };

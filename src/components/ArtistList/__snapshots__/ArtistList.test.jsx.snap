@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArtistList component renders ArtistList 1`] = `
+<DocumentFragment>
+  <ul>
+    <li
+      class="li"
+    >
+      <a
+        href="/artists/coolId"
+      >
+        Cool Artist
+        <img
+          alt="Cool Artist"
+          class="image"
+          src="cool-image.com"
+        />
+      </a>
+    </li>
+  </ul>
+</DocumentFragment>
+`;

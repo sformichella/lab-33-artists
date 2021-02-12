@@ -5,7 +5,10 @@ import ArtistsSearchForm from './ArtistsSearchForm';
 describe('ArtistsSearchForm component', () => {
   afterEach(() => cleanup());
   it('renders ArtistsSearchForm', () => {
-    const { asFragment } = render(<ArtistsSearchForm />);
+    const { asFragment } = render(<ArtistsSearchForm 
+      handleSearch={() => {}}
+      handleSubmit={() => {}}
+    />);
     expect(asFragment()).toMatchSnapshot();
   });
 });

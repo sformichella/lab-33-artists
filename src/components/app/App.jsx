@@ -7,6 +7,7 @@ import {
 import ArtistsContainer from '../containers/ArtistsContainer/ArtistsContainer';
 import ReleasesContainer from '../containers/ReleasesContainer/ReleasesContainer';
 import RecordingsContainer from '../containers/RecordingsContainer/RecordingsContainer';
+import LyricsContainer from '../containers/LyricsContainer/LyricsContainer';
 
 export default function App() {
   return (
@@ -26,6 +27,11 @@ export default function App() {
           exact
           path = "/release/:id"
           render = {routerProps => <RecordingsContainer {...routerProps}/>}
+        />
+        <Route
+          exact
+          path = "/recording/:id"
+          render = {routerProps => <LyricsContainer {...routerProps}/>}
         />
       </Switch>
     </Router>

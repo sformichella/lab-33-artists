@@ -4,16 +4,27 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [artistName, setArtistName] = useState('');
+  const [recording, setRecording] = useState('');
 
   return (
-    <AppContext.Provider value={{ artistName, setArtistName }}>
+    <AppContext.Provider value={{
+      artistName,
+      setArtistName,
+      recording,
+      setRecording
+    }}>
       { children }
     </AppContext.Provider>
   );
 };
 
 export const useApp = () => {
-  const { artistName, setArtistName } = useContext(AppContext);
+  const {
+    artistName,
+    setArtistName,
+    recording,
+    setRecording
+  } = useContext(AppContext);
 
-  return { artistName, setArtistName };
+  return { artistName, setArtistName, recording, setRecording };
 };

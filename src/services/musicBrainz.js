@@ -1,5 +1,7 @@
 const ARTISTS_URL = 'http://musicbrainz.org/ws/2/artist?fmt=json&limit=25';
 const RELEASES_URL = 'http://musicbrainz.org/ws/2/release?fmt=json&limit=1000';
+const RECORDINGS_URL = 'http://musicbrainz.org/ws/2/recording?fmt=json&limit=1000';
+
 
 export const getArtists = (search, page) => {
   return fetch(ARTISTS_URL + `&query=${search}&offset=${(page - 1) * 25}`)
@@ -26,8 +28,6 @@ export const getReleases = (search, page) => {
       const { releases } = json;
       const count = releases.length;
 
-      console.log(count);
-
       const results = releases.map(release => {
         const { id, title } = release;
         const hasCoverArt = release['cover-art-archive'].front;
@@ -46,3 +46,19 @@ export const getReleases = (search, page) => {
       return { results, totalPages };
     });
 };
+
+export const getRecordings = search => {
+  return fetch(RECORDINGS_URL + `&release=${search}`)
+    .then(res => res.json())
+    .then(json => {
+      const { recordings } = json;
+
+      const results = recordings.map(record => {
+        const { id, title } = record;
+
+        return { id, name: title };
+      });
+
+      return { results };
+    });
+};  

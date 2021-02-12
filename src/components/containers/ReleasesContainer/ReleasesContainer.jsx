@@ -44,6 +44,7 @@ export default function ReleasesContainer() {
           ? <Loading />
           : <ArtistList
             artists={results}
+            type="release"
           />
       }
     </>

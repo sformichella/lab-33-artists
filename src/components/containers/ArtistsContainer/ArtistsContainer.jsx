@@ -37,6 +37,7 @@ export default function ArtistsContainer() {
           ? <Loading />
           : <ArtistList
             artists={artists}
+            type="artist"
           />
       }
     </>
